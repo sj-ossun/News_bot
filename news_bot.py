@@ -27,8 +27,8 @@ rss_url = f"https://news.google.com/rss/search?q={encoded_query}+when:1d&hl=ko&g
 feed = feedparser.parse(rss_url)
 news_entries = feed.entries[:10]
 
-    def get_ai_summary(title, snippet):
-    url = f"https://generativelanguage.googleapis.com/v1/{MODEL_NAME}:generateContent?key={MY_KEY}"
+def get_ai_summary(title, snippet):
+url = f"https://generativelanguage.googleapis.com/v1/{MODEL_NAME}:generateContent?key={MY_KEY}"
     
     prompt = (
         f"뉴스 제목: {title}\n"
