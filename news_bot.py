@@ -27,9 +27,16 @@ rss_url = f"https://news.google.com/rss/search?q={encoded_query}+when:1d&hl=ko&g
 feed = feedparser.parse(rss_url)
 news_entries = feed.entries[:10]
 
-def get_ai_summary(title, snippet):
+    def get_ai_summary(title, snippet):
     url = f"https://generativelanguage.googleapis.com/v1/{MODEL_NAME}:generateContent?key={MY_KEY}"
-    prompt = f"뉴스 제목: {title}\n내용: {snippet}\n\n이 기사의 핵심 팩트를 한 줄로 간결하게 요약해줘."
+    
+    prompt = (
+        f"뉴스 제목: {title}\n"
+        f"내용 요약: {snippet}\n\n"
+        "너는 IT 전문 큐레이터야. 위 뉴스 제목과 요약문을 보고, "
+        "제목에 나오지 않은 구체적인 맥락이나 의미를 한 줄로 짧게 설명해줘."
+    )
+    
     data = {"contents": [{"parts": [{"text": prompt}]}]}
     try:
         response = requests.post(url, headers={'Content-Type': 'application/json'}, data=json.dumps(data), timeout=10)
