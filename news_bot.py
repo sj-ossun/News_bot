@@ -8,7 +8,7 @@ from email.mime.multipart import MIMEMultipart
 from urllib.parse import quote
 import os  # 운영체제 도구 추가
 
-# 직접 쓰지 말고 시스템에서 가져오라고 시킵니다.
+## 직접 쓰지 말고 시스템에서 가져오라고 시킵니다.
 MY_KEY = os.environ.get('MY_KEY')
 MY_EMAIL = os.environ.get('MY_EMAIL')
 APP_PASSWORD = os.environ.get('APP_PASSWORD')
